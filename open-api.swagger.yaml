@@ -1,0 +1,77 @@
+openapi: 3.0.1
+info:
+  title: User location API
+  description: REST API for returning users that live in London or within 50nm of london
+  version: 1.0.0
+servers:
+- url: http://localhost:3000
+  description: Generated server url
+paths:
+  /users/:
+    get:
+      tags:
+      - users
+      summary: List all users that live in London or within 50nm of london
+      description: "Uses the upstream API (https://bpdts-test-app.herokuapp.com/)"
+      operationId: list
+      responses:
+        "200":
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Error'
+  /health:
+    get:
+      tags:
+      - health
+      summary: Returns status code 200 and message of 'Up'
+      description: "Used to help AWS / Azure environments determine the health status of the service"
+      responses:
+        "200":
+          description: Successful
+          content:
+              application/json:
+                schema:
+                  type: object
+                  items:
+                    $ref: '#/components/schemas/Health'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: number
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        ip_address:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string

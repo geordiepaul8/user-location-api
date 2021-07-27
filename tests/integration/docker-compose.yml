@@ -1,0 +1,30 @@
+# A simple docker-compose script for use with the
+# integration tests. The tests use a package called
+# Testcontainers which has wrapper-methods for docker-compose
+version: '2.2'
+services:
+  # user-location-api:
+  #   # build:
+  #     # context: ../..
+  #     # dockerfile: docker/Dockerfile
+  #   image: 'user-location-api'
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     PORT: 3000
+  #     USER_LOCATION_API_BASE_URL: http://api-stub:8080/
+  #     HTTP_TIMEOUT: 10
+  #     LOG_LEVEL: info
+
+  # Wiremock stub which will return some mock data
+  api-stub:
+    image: "rodolpheche/wiremock:main-alpine@sha256:8fb3c28e4990bb676dc26ae49d21a163a6905940b2dd2cc08ca771df55ee0b7c"
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    mem_limit: 512mb
+    mem_reservation: 64mb
+    command: "--port 8080 --verbose"
+    volumes:
+      - "${PWD}/tests/integration/wiremock-data/__files:/home/wiremock/__files/"
+      - "${PWD}/tests/integration/wiremock-data/mappings:/home/wiremock/mappings"

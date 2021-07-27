@@ -1,0 +1,17 @@
+{
+    "id": "261f7b9b-4133-4334-894b-724365315ae5",
+    "name": "all-users",
+    "request": {
+      "url": "/users",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "bodyFileName": "all-users-including-london-and-within-50-of-london.json",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "uuid": "261f7b9b-4133-4334-894b-724365315ae5",
+    "persistent": true
+  }

@@ -1,0 +1,51 @@
+{
+  "name": "user-location-api",
+  "version": "1.0.0",
+  "description": "An API which returns a list of users that either live in london, or live within 50nm of London",
+  "main": "index.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "pipeline": "npm run test & npm run compliance & npm run quality",
+    "test": "npm run test:unit",
+    "test:unit": "mocha --exclude 'tests/integration/**/*' 'tests/**/*.test.js'",
+    "test:integration": "DEBUG=testcontainers mocha --timeout 900000 --recursive --extension=test.js tests/integration",
+    "compliance": "eslint .",
+    "quality": "npm run quality:coverage",
+    "quality:coverage": "nyc mocha --exclude 'tests/integration/**/*.test.js' 'tests/**/*.test.js'"
+  },
+  "author": "Paul Costigan",
+  "license": "ISC",
+  "dependencies": {
+    "@dwp/node-logger": "0.14.3",
+    "body-parser": "1.19.0",
+    "dotenv": "10.0.0",
+    "express": "4.17.1",
+    "got": "11.8.2",
+    "helmet": "4.6.0"
+  },
+  "devDependencies": {
+    "@dwp/eslint-config-base": "^5.0.1",
+    "@dwp/nyc-config-base": "^1.0.0",
+    "chai": "4.3.4",
+    "chai-match": "1.1.1",
+    "eslint": "7.31.0",
+    "eslint-plugin-sonarjs": "0.9.1",
+    "mocha": "9.0.2",
+    "nyc": "15.1.0",
+    "proxyquire": "2.1.3",
+    "sinon": "11.1.1",
+    "sinon-chai": "3.7.0",
+    "testcontainers": "7.18.1"
+  },
+  "files": [
+    "bootstrap/**/*",
+    "lib/**/*",
+    "routes/**/*",
+    "utils/**/*",
+    "middleware/**/*",
+    "index.js"
+  ]
+}

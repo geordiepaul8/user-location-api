@@ -1,0 +1,17 @@
+{
+    "id": "261f7b9b-4133-4334-894b-724365315ae5",
+    "name": "london-users",
+    "request": {
+      "url": "/city/London/users",
+      "method": "GET"
+    },
+    "response": {
+      "status": 200,
+      "bodyFileName": "london-users.json",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    "uuid": "261f7b9b-4133-4334-894b-724365315ae5",
+    "persistent": true
+  }
